@@ -182,4 +182,26 @@ class BouncyScaleDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BouncyScaleDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val bsd : BouncyScaleDown = BouncyScaleDown(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            bsd.draw(canvas, paint)
+            animator.animate {
+                bsd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bsd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
