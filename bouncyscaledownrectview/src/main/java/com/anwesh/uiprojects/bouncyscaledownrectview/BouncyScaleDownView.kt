@@ -15,8 +15,8 @@ import android.graphics.RectF
 
 val nodes : Int = 5
 val bars : Int = 5
-val scGap : Float = 0.02f
-val delay : Long = 20
+val scGap : Float = 0.02f / bars
+val delay : Long = 20L / bars
 val foreColor : Int = Color.parseColor("#3F51B5")
 val backColor : Int = Color.parseColor("#BDBDBD")
 
@@ -44,6 +44,7 @@ fun Canvas.drawBars(scale : Float, w : Float, paint : Paint) {
 fun Canvas.drawSBDNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
+    paint.color = foreColor
     val gap : Float = h / (nodes + 1)
     save()
     translate(0f, gap * (i + 1))
