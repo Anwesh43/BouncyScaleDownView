@@ -205,4 +205,13 @@ class BouncyScaleDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BouncyScaleDownView {
+            val view : BouncyScaleDownView = BouncyScaleDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
